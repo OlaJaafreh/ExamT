@@ -1,0 +1,42 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  body{
+    width: 500px;
+  }
+
+
+
+  button{
+    margin-left: 165px;
+    margin-top: 20px;
+    height: 40px;
+    width: 80px;
+  }
+
+  .des{
+    border: solid black;
+    padding: 10px;
+  }
+
+  .left4{
+    border: solid rgb(150, 74, 150);
+    padding: 10px;
+    height: 150px;
+    color: rgb(150, 74, 150);
+  }
+
+  .cont{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .goto{
+    margin-left: 20px;
+    color: rgb(150, 74, 150);
+  }
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+</head>
+<body>
+    <div class="header">
+    <h2>Hello, {{user.first_name}}</h2>
+    <a href="{%url 'loginPage'%}">Logout</a>
+</div>
+
+    <h2>All Trips:</h2>
+
+    <table id="customers">
+        <tr>
+            <th>Destination</th>
+            <th>Start Day</th>
+            <th>End Day</th>
+            <th>Organizer</th>
+            <th>Actions</th>
+    </tr>
+
+        {%for trip in trips%}
+            <tr>
+                <td>{{trip.destination}}</td>
+                <td>{{trip.startDay}}</td>
+                <td>{{trip.endDay}}</td>
+                <td>{{trip.organizer.first_name}}</td>
+                {%if user == trip.organizer%}
+                    <td><a href="{%url 'editTrip' trip.id%}">Edit</a></td>
+                {%else%}
+                    <td><a href="{%url 'details'  trip.id%}">Details</a></td>
+                {%endif%}
+            </tr>
+        {%endfor%}
+
+        
+    </table>
+
+    <a href="{%url 'new'%}" class="plan">+ Plan a New Trip</a>
+</body>
+</html>

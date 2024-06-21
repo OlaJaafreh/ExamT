@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="registration">
+        <form action="register" method="POST">
+            {% csrf_token %}
+            <h1 class="reg">Registration</h1>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="first_name">First Name</label></td>
+                        <td><input type="text" id="first_name" name="first_name"></td>
+                    </tr>
+                    {% if errors.first_name %}
+                    <tr>
+                        <td></td>
+                        <td><span class="error">{{ errors.first_name }}</span></td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td><label for="last_name">Last Name</label></td>
+                        <td><input type="text" id="last_name" name="last_name"></td>
+                    </tr>
+                    {% if errors.last_name %}
+                    <tr>
+                        <td></td>
+                        <td><span class="error">{{ errors.last_name }}</span></td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input type="email" id="email" name="email"></td>
+                    </tr>
+                    {% if errors.email %}
+                    <tr>
+                        <td></td>
+                        <td><span class="error">{{ errors.email }}</span></td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td><input type="password" id="password" name="password"></td>
+                    </tr>
+                    {% if errors.password %}
+                    <tr>
+                        <td></td>
+                        <td><span class="error">{{ errors.password }}</span></td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td><label for="Confirmpassword">Confirm PW</label></td>
+                        <td><input type="password" id="Confirmpassword" name="Confirmpassword"></td>
+                    </tr>
+                    {% if errors.Confirmpassword %}
+                    <tr>
+                        <td></td>
+                        <td><span class="error">{{ errors.Confirmpassword }}</span></td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <div class="login">
+        <form action="log" method="POST">
+            {% csrf_token %}
+            <h1>Login</h1>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="emailLog">Email</label></td>
+                        <td><input type="text" id="emailLog" name="emailLog"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="pass">Password</label></td>
+                        <td><input type="password" id="pass" name="pass"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

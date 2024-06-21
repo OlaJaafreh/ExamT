@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'new.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h2>Hello, {{user.first_name}}</h2>
+        <a href="{%url 'dashboard'%}" class="dashhh">Dashboard</a>
+        <a href="{%url 'loginPage'%}">Logout</a>
+    </div>
+
+    <h1>Plan a New Trip</h1>
+
+    <form action="{% url 'newTrip' %}" method="POST">
+        {% csrf_token %}
+    <table>
+        <tr>
+            <td>Destination</td>
+            <td><input type="text" name="destination" required></td>
+        </tr>
+
+        {% if errors.destination %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.destination }}</span></td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>Start Date</td>
+            <td><input type="date" name="startDay" required></td>
+        </tr>
+
+        {% if errors.startDay %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.startDay }}</span></td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>End Date</td>
+            <td><input type="date" name="endDay" required></td>
+        </tr>
+
+        {% if errors.endDay %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.endDay }}</span></td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>Itinerary</td>
+            <td><textarea name="itinerary" id="" required></textarea></td>
+        </tr>
+
+        {% if errors.itinerary %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.itinerary }}</span></td>
+            </tr>
+        {% endif %}
+
+
+
+
+    </table>
+
+    <button>submit</button>
+
+    </form>
+</body>
+</html>

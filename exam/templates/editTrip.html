@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'new.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h2>Hello, {{user.first_name}}</h2>
+        <a href="{%url 'dashboard'%}">Dashboard</a>
+        <a href="{%url 'loginPage'%}">Logout</a>
+    </div>
+<div class="container">
+    <h1>Edit Trip</h1>
+
+    <form action="{% url 'editTrip' trip.id %}" method="POST">
+        {% csrf_token %}
+    <table>
+        <tr>
+            <td>Destination</td>
+            <td><input type="text" name="Edestination" value="{{trip.destination}}" required></td>
+        </tr>
+
+        {% if errors.destination %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.Edestination }}</span></td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>Start Date</td>
+            <td><input type="date" name="EstartDay" value="{{trip.startDay}}" required></td>
+        </tr>
+
+        {% if errors.startDay %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.EstartDay }}</span></td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>End Date</td>
+            <td><input type="date" name="EendDay" value="{{trip.endDay}}"  required></td>
+        </tr>
+
+        {% if errors.endDay %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.EendDay }}</span></td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <td>Itinerary</td>
+            <td><textarea name="Eitinerary" id="" required>{{trip.itinerary}}</textarea></td>
+        </tr>
+
+        {% if errors.itinerary %}
+            <tr>
+                <td></td>
+                <td><span class="error">{{ errors.Eitinerary }}</span></td>
+            </tr>
+        {% endif %}
+
+
+
+    </table>
+
+    <button>Update</button>
+</form>
+    <a class="deletee" href="{% url 'deleteTrip' trip.id %}">DELETE THIS TRIP</a>
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
